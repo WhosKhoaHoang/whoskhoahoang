@@ -1,18 +1,27 @@
 class PostsController < ApplicationController
+
+    #This is the index of the "posts directory". This
+    #means that the page can be accessed by simply
+    #specifying [domain]/posts/
+    def index
+        @post = Post.all
+    end
+
+    
     def new
         @post = Post.new
     end
     
     
     #NOTE: show, edit, update are already special RoR keywords?
-    #Post show page path: [domain]/post/[post_id]
+    #Post show page path: [domain]/posts/[post_id]
     def show
         @post = Post.find(params[:id]) #I.e., GET params
         #^This variable becomes visible in show.html.erb
     end
     
     
-    #Post edit page path: [domain]/post/[post_id]/edit
+    #Post edit page path: [domain]/posts/[post_id]/edit
     def edit
         @post = Post.find(params[:id])
         #^This variable becomes visible in edit.html.erb
