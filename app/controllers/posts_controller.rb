@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+    before_action :set_post, only: [:edit, :update, :show, :destroy]
+    
     #This is the index of the "posts directory". This
     #means that the page can be accessed by simply
     #specifying [domain]/posts/
@@ -16,14 +18,14 @@ class PostsController < ApplicationController
     #NOTE: show, edit, update are already special RoR keywords?
     #Post show page path: [domain]/posts/[post_id]
     def show
-        @post = Post.find(params[:id]) #I.e., GET params
+        #@post = Post.find(params[:id]) #I.e., GET params
         #^This variable becomes visible in show.html.erb
     end
     
     
     #Post edit page path: [domain]/posts/[post_id]/edit
     def edit
-        @post = Post.find(params[:id])
+        #@post = Post.find(params[:id])
         #^This variable becomes visible in edit.html.erb
     end
     
@@ -37,6 +39,14 @@ class PostsController < ApplicationController
         else
             render "new" #I.e., new.html.erb
         end
+    end
+    
+    
+    def destroy
+        @post = Post.find(params[:id])
+        @post.destroy
+        flash[:notice] = "Post was deleted"
+        redirect_to posts_path
     end
     
     
@@ -55,5 +65,9 @@ class PostsController < ApplicationController
     private
         def post_params
             params.require(:post).permit(:title, :description)
+        end
+    
+        def set_post
+            @post = Post.find(params[:id])
         end
 end
