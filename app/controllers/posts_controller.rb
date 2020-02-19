@@ -20,6 +20,7 @@ class PostsController < ApplicationController
     def show
         #@post = Post.find(params[:id]) #I.e., GET params
         #^This variable becomes visible in show.html.erb
+        ## No longer need to define @post because of before_action up there ^ ##
     end
     
     
@@ -27,6 +28,7 @@ class PostsController < ApplicationController
     def edit
         #@post = Post.find(params[:id])
         #^This variable becomes visible in edit.html.erb
+        ## No longer need to define @post because of before_action up there ^ ##
     end
     
     
