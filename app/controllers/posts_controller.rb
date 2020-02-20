@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     #means that the page can be accessed by simply
     #specifying [domain]/posts/
     def index
-        @post = Post.all
+        @posts = Post.all
     end
 
     
