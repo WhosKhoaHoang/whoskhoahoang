@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     def index
-        @users = User.all
+        @users = User.paginate(page: params[:page], per_page: 5)
     end
 
 
@@ -39,6 +39,10 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
+        @user_posts = @user.posts.paginate(page: params[:page], per_page: 5)
+        #THINK: Calling paginate() on some container object is like saying "Hey,
+        #       this container of elements can be paginated on the frontend with
+        #       will_paginate!"
     end
 
     

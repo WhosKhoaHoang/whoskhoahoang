@@ -6,4 +6,12 @@
     </div>
 <h4 align="center"><%= @user.username %>'s posts</h4>
 
-<%= render "shared/posts", obj: @user.posts %>
+<div align="center">
+    <%= will_paginate @user_posts %>
+</div>
+<!-- What's passed below as obj needs to match
+     whatever was passed to will_paginate. It
+     shouldn't be @user.posts since @user.posts
+     wasn't "paginate'ified" with paginate() in
+     users_controller. -->
+<%= render "shared/posts", obj: @user_posts %>

@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     #means that the page can be accessed by simply
     #specifying [domain]/posts/
     def index
-        @posts = Post.all
+        @posts = Post.paginate(page: params[:page], per_page: 5)
     end
 
     
