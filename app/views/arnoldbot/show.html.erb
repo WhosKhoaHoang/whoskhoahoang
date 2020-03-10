@@ -1,0 +1,13 @@
+<div class="container">
+    <div id="chat_window"></div>
+    <input id="msg" type=text>
+    <button>send</button>
+</div>
+
+
+<script type="text/javascript">
+    $("button").click(function() {
+        var msg = $("#msg").val();
+        $("#chat_window").append("<p>"+msg+"</p>")
+    })
+</script>

@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     get "about", to: "pages#about"
     resources :posts #Gives all sorts of paths to update, delete, create, show
     resources :users, except: [:new]
+    resource :arnoldbot, :controller => :arnoldbot
 end
