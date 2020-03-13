@@ -8,4 +8,11 @@ Rails.application.routes.draw do
     resources :posts #Gives all sorts of paths to update, delete, create, show
     resources :users, except: [:new]
     resource :arnoldbot, :controller => :arnoldbot
+
+    class OnlyAjaxRequest
+        def matches?(request)
+            request.xhr?
+        end
+    end
+    get "msg_arnoldbot" => "arnoldbot#msg_arnoldbot", :constraints => OnlyAjaxRequest.new
 end

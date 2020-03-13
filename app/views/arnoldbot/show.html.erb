@@ -6,8 +6,41 @@
 
 
 <script type="text/javascript">
-    $("button").click(function() {
-        var msg = $("#msg").val();
-        $("#chat_window").append("<p>"+msg+"</p>")
-    })
+    $(function() {
+        /*
+        Processes a user's message to ArnoldBot.
+        return: None
+        rtype: None
+        */
+        function processMsg() {
+            //This is the user's message:
+            var msg = $("#msg").val();
+            $("#chat_window").append("<p>"+msg+"</p>");
+
+            $.ajax({
+                type: "GET",
+                url: "/msg_arnoldbot",
+                dataType: "json",
+                data: { msg : msg },
+                success: function(data) {
+                    $("#chat_window").append("<p>"+data["response"]+"</p>");
+                }
+            })
+        }
+
+
+        $(document).ready(function(){
+            $("#msg").keypress(function(e){
+                if (e.keyCode==13) {
+                    processMsg();
+                    this.value = "";
+                }
+            });
+        });
+
+
+        $("button").click(function() {
+            processMsg();
+        }); 
+    });
 </script>
